@@ -22,7 +22,9 @@ exports.getUsers = function(req, res) {
 			res.send(err);
 		}
 		else {
-			res.json({message:'got cunts',data:users});
+			res.header("X-Total-Count", users.length);
+			// res.json({message:'got cunts',data:users});
+			res.json(users);
 		}
 	});
 };
