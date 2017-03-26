@@ -1,6 +1,7 @@
 'use strict';
 
 var User = require('../model/user');
+
 exports.postUsers = function(req, res) {
 	var user = new User({
 		username:req.body.username,
@@ -23,7 +24,6 @@ exports.getUsers = function(req, res) {
 		}
 		else {
 			res.header("X-Total-Count", users.length);
-			// res.json({message:'got cunts',data:users});
 			res.json(users);
 		}
 	});

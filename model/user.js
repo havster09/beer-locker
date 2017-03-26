@@ -15,6 +15,14 @@ var UserSchema = new mongoose.Schema({
 	}
 });
 
+UserSchema.virtual('id').get(function(){
+	return this._id.toHexString();
+});
+
+UserSchema.set('toJSON', {
+	virtuals: true
+});
+
 UserSchema.pre('save',function(callback) {
 	var user = this;
 	if(!user.isModified('password')) {
@@ -42,6 +50,6 @@ UserSchema.methods.verifyPassword = function(password, callback) {
 			callback(null, isMatch);
 		}
 	})
-}
+};
 
 module.exports = mongoose.model('User', UserSchema);

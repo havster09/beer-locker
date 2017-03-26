@@ -31,14 +31,16 @@
 	app.use(passport.initialize());
 
 
-
-
-
 	router.get('/', function(req, res) {
 		res.json({
 			message: 'u funny cunt'
 		});
 	});
+
+
+	router.route('/authenticate')
+		.post(authController.isAuthenticated);
+
 
 	router.route('/beers')
 		.get(authController.isAuthenticated, beerController.getBeers)
